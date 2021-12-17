@@ -1,9 +1,5 @@
 public class Game {
 
-    Cell cell;
-
-    public Game(Cell cell) {
-        this.cell = cell;
-    }
+    static Cell[][] gameField = new Cell[10][10];
 
 }

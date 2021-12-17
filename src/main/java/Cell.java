@@ -1,13 +1,9 @@
 public class Cell {
 
     private boolean isAlive;
-    private final int xAxis;
-    private final int yAxis;
 
-    public Cell(boolean isAlive, int xAxis, int yAxis) {
+    public Cell(boolean isAlive) {
         this.isAlive = isAlive;
-        this.xAxis = xAxis;
-        this.yAxis = yAxis;
     }
 
     public boolean isAlive() {
@@ -18,13 +14,12 @@ public class Cell {
         isAlive = alive;
     }
 
-    public int getxAxis() {
-        return xAxis;
+    @Override
+    public String toString() {
+        if (this.isAlive){
+            return "O";
+        } else {
+            return "X";
+        }
     }
-
-    public int getyAxis() {
-        return yAxis;
-    }
-
-
 }
