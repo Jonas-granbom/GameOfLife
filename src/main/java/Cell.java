@@ -22,30 +22,22 @@ public class Cell {
     public int checkHowManyAliveNeighboursGivenRowAndCol(Cell[][] gameField, int row, int col){
         int aliveNeighbours = 0;
 
-        if (row > 0 && col > 0 && gameField[row - 1][col - 1].isAlive()) {
+        if (row > 0 && col > 0 && gameField[row - 1][col - 1].isAlive())
             aliveNeighbours++;
-        }
-        if (row > 0 && gameField[row - 1][col].isAlive()) {
+        if (row > 0 && gameField[row - 1][col].isAlive())
             aliveNeighbours++;
-        }
-        if (row > 0 && col < 9 && gameField[row - 1][col + 1].isAlive()) {
+        if (row > 0 && col < 9 && gameField[row - 1][col + 1].isAlive())
             aliveNeighbours++;
-        }
-        if (col > 0 && gameField[row][col - 1].isAlive()) {
+        if (col > 0 && gameField[row][col - 1].isAlive())
             aliveNeighbours++;
-        }
-        if (col < 9 && gameField[row][col + 1].isAlive()) {
+        if (col < 9 && gameField[row][col + 1].isAlive())
             aliveNeighbours++;
-        }
-        if (row < 9 && col > 0 && gameField[row + 1][col - 1].isAlive()) {
+        if (row < 9 && col > 0 && gameField[row + 1][col - 1].isAlive())
             aliveNeighbours++;
-        }
-        if (row < 9 && gameField[row + 1][col].isAlive()) {
+        if (row < 9 && gameField[row + 1][col].isAlive())
             aliveNeighbours++;
-        }
-        if (row < 9 && col < 9 && gameField[row + 1][col + 1].isAlive()) {
+        if (row < 9 && col < 9 && gameField[row + 1][col + 1].isAlive())
             aliveNeighbours++;
-        }
 
         return aliveNeighbours;
     }
