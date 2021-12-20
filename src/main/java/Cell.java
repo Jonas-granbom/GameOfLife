@@ -61,9 +61,9 @@ public class Cell {
     @Override
     public String toString() {
         if (this.isAlive){
-            return "O";
+            return "▇";
         } else {
-            return "X";
+            return "▒";
         }
     }
 }

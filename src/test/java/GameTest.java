@@ -77,6 +77,5 @@ public class GameTest {
         Game.proceedToNextGeneration();
         assertEquals(Game.gameField[5][5].isAlive(), true);
     }
-
 }
 
