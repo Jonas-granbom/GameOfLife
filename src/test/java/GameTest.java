@@ -11,9 +11,10 @@ public class GameTest {
     int MAX_ROWS = Game.gameField.length;
     int MAX_COLS = Game.gameField[0].length;
 
+
     @Test
     void allCellsAreDead() {
-        killAllCells();
+        Game.allCellsAreDeadByDefault();
 
         int numberOfAliveCells = 0;
 
@@ -29,7 +30,7 @@ public class GameTest {
 
     @Test
     void allCellsAreDeadExceptRow5Col4() {
-        killAllCells();
+        Game.allCellsAreDeadByDefault();
         Game.gameField[5][4].setAlive(true);
         List<String> aliveCells = new ArrayList<>();
 
@@ -69,12 +70,6 @@ public class GameTest {
     }
 
 
-    private void killAllCells() {
-        for (int row = 0; row < Game.gameField.length; row++) {
-            for (int col = 0; col < Game.gameField[row].length; col++) {
-                Game.gameField[row][col] = new Cell(false);
-            }
-        }
-    }
+
 }
 

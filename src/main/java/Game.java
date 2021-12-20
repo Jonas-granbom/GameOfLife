@@ -2,6 +2,14 @@ public class Game {
 
     static Cell[][] gameField = new Cell[10][10];
 
+    public static void allCellsAreDeadByDefault() {
+        for (int row = 0; row < Game.gameField.length; row++) {
+            for (int col = 0; col < Game.gameField[row].length; col++) {
+                Game.gameField[row][col] = new Cell(false, row, col);
+            }
+        }
+    }
+
     public static void proceedToNextGeneration() {
 
         checkNeighbourStatusInAllCells();
