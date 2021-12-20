@@ -68,8 +68,15 @@ public class GameTest {
 
         assertEquals(Game.gameField[5][5].isAlive(), false);
     }
-
-
+    @Test
+    void ifThreeAliveNeighboursCellWillComeToLife(){
+        Game.allCellsAreDeadByDefault();
+        Game.gameField[4][4].setAlive(true);
+        Game.gameField[4][5].setAlive(true);
+        Game.gameField[5][4].setAlive(true);
+        Game.proceedToNextGeneration();
+        assertEquals(Game.gameField[5][5].isAlive(), true);
+    }
 
 }
 
