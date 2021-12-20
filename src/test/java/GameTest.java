@@ -44,18 +44,28 @@ public class GameTest {
     }
 
     @Test
-    void checkHowMManyOfRow5Col4AreAlive() {
-        killAllCells();
+    void checkHowManyNeighboursOfRow5Col4AreAlive() {
+        Game.allCellsAreDeadByDefault();
         Game.gameField[5][4].setAlive(true);
         Game.gameField[5][5].setAlive(true);
         Game.gameField[4][4].setAlive(true);
         Game.gameField[6][4].setAlive(true);
+        Game.gameField[8][1].setAlive(true);
         int row = 5;
         int col = 4;
 
         int numberOfAliveNeighboursOfGivenRowAndCol = Game.gameField[row][col].checkHowManyAliveNeighboursGivenRowAndCol(Game.gameField, row, col);
 
         assertEquals(3, numberOfAliveNeighboursOfGivenRowAndCol);
+    }
+
+    @Test
+    void aliveCellWithNoAliveNeighboursDies(){
+        Game.allCellsAreDeadByDefault();
+        Game.gameField[5][5].setAlive(true);
+        Game.proceedToNextGeneration();
+
+        assertEquals(Game.gameField[5][5].isAlive(), false);
     }
 
 

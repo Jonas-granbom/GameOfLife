@@ -1,9 +1,14 @@
 public class Cell {
 
     private boolean isAlive;
+    private int row;
+    private int col;
+    private int numberOfAliveNeighbours;
 
-    public Cell(boolean isAlive) {
+    public Cell(boolean isAlive, int row, int col) {
         this.isAlive = isAlive;
+        this.row = row;
+        this.col = col;
     }
 
     public boolean isAlive() {
@@ -43,6 +48,14 @@ public class Cell {
         }
 
         return aliveNeighbours;
+    }
+
+    public void checkForNeighboursForCurrentCell() {
+        numberOfAliveNeighbours = checkHowManyAliveNeighboursGivenRowAndCol(Game.gameField, row, col);
+    }
+
+    public int getNumberOfAliveNeighbours() {
+        return numberOfAliveNeighbours;
     }
 
     @Override
