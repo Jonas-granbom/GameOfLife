@@ -7,11 +7,11 @@ public class Game {
         int counter = 0;
 
         allCellsAreDeadByDefault();
-        gameField[0][2].setCellState(Cell.CellState.ALIVE);
-        gameField[1][0].setCellState(Cell.CellState.ALIVE);
-        gameField[1][2].setCellState(Cell.CellState.ALIVE);
-        gameField[2][1].setCellState(Cell.CellState.ALIVE);
-        gameField[2][2].setCellState(Cell.CellState.ALIVE);
+        setStateOfCellToAlive(gameField, 0, 2, Cell.CellState.ALIVE);
+        setStateOfCellToAlive(gameField, 1, 0, Cell.CellState.ALIVE);
+        setStateOfCellToAlive(gameField, 1, 2, Cell.CellState.ALIVE);
+        setStateOfCellToAlive(gameField, 2, 1, Cell.CellState.ALIVE);
+        setStateOfCellToAlive(gameField, 2, 2, Cell.CellState.ALIVE);
 
         while(true){
             System.out.println("generation: " + counter);
@@ -28,6 +28,10 @@ public class Game {
         }
     }
 
+    private static void setStateOfCellToAlive(Cell[][] gameField, int row, int col, Cell.CellState alive) {
+        gameField[row][col].setCellState(alive);
+    }
+
 
     public static void allCellsAreDeadByDefault() {
         for (int row = 0; row < Game.gameField.length; row++) {
@@ -38,7 +42,6 @@ public class Game {
     }
 
     public static void proceedToNextGeneration() {
-
         checkNeighbourStatusInAllCells();
         giveBirthOrKillCellDependingOnNeighbourStatus();
     }
@@ -47,11 +50,11 @@ public class Game {
         for (int row = 0; row < Game.gameField.length; row++) {
             for (int col = 0; col < Game.gameField[row].length; col++) {
                 if (Game.gameField[row][col].getNumberOfAliveNeighbours() < 2) {
-                    Game.gameField[row][col].setCellState(Cell.CellState.DEAD);
+                    setStateOfCellToAlive(Game.gameField, row, col, Cell.CellState.DEAD);
                 } else if (Game.gameField[row][col].getNumberOfAliveNeighbours() == 3){
-                    Game.gameField[row][col].setCellState(Cell.CellState.ALIVE);
+                    setStateOfCellToAlive(Game.gameField, row, col, Cell.CellState.ALIVE);
                 } else if (Game.gameField[row][col].getNumberOfAliveNeighbours() > 3) {
-                    Game.gameField[row][col].setCellState(Cell.CellState.DEAD);
+                    setStateOfCellToAlive(Game.gameField, row, col, Cell.CellState.DEAD);
                 }
             }
         }

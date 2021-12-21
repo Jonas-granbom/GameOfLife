@@ -1,7 +1,5 @@
 public class Cell {
 
-
-
     private CellState cellState;
     private final int row;
     private final int col;

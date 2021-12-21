@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.Test;
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
 
 public class GameTest {
@@ -11,11 +8,9 @@ public class GameTest {
     int MAX_ROWS = Game.gameField.length;
     int MAX_COLS = Game.gameField[0].length;
 
-
     @Test
     void allCellsAreDead() {
         Game.allCellsAreDeadByDefault();
-
         int numberOfAliveCells = 0;
 
         for (int row = 0; row < MAX_ROWS; row++) {
@@ -31,7 +26,7 @@ public class GameTest {
     @Test
     void allCellsAreDeadExceptRow5Col4() {
         Game.allCellsAreDeadByDefault();
-        Game.gameField[5][4].setCellState(Cell.CellState.ALIVE);
+        setStateOfCellToAlive(5, 4);
         List<String> aliveCells = new ArrayList<>();
 
         for (int row = 0; row < MAX_ROWS; row++) {
@@ -47,11 +42,11 @@ public class GameTest {
     @Test
     void checkHowManyNeighboursOfRow5Col4AreAlive() {
         Game.allCellsAreDeadByDefault();
-        Game.gameField[5][4].setCellState(Cell.CellState.ALIVE);
-        Game.gameField[5][5].setCellState(Cell.CellState.ALIVE);
-        Game.gameField[4][4].setCellState(Cell.CellState.ALIVE);
-        Game.gameField[6][4].setCellState(Cell.CellState.ALIVE);
-        Game.gameField[8][1].setCellState(Cell.CellState.ALIVE);
+        setStateOfCellToAlive(5, 4);
+        setStateOfCellToAlive(5, 5);
+        setStateOfCellToAlive(4, 4);
+        setStateOfCellToAlive(6, 4);
+        setStateOfCellToAlive(8, 1);
         int row = 5;
         int col = 4;
 
@@ -63,19 +58,23 @@ public class GameTest {
     @Test
     void aliveCellWithNoAliveNeighboursDies(){
         Game.allCellsAreDeadByDefault();
-        Game.gameField[5][5].setCellState(Cell.CellState.ALIVE);
+        setStateOfCellToAlive(5, 5);
         Game.proceedToNextGeneration();
 
         assertEquals(Game.gameField[5][5].getCellState(), Cell.CellState.DEAD);
     }
+
     @Test
     void ifThreeAliveNeighboursCellWillComeToLife(){
         Game.allCellsAreDeadByDefault();
-        Game.gameField[4][4].setCellState(Cell.CellState.ALIVE);
-        Game.gameField[4][5].setCellState(Cell.CellState.ALIVE);
-        Game.gameField[5][4].setCellState(Cell.CellState.ALIVE);
+        setStateOfCellToAlive(4, 4);
+        setStateOfCellToAlive(4, 5);
+        setStateOfCellToAlive(5, 4);
         Game.proceedToNextGeneration();
         assertEquals(Game.gameField[5][5].getCellState(), Cell.CellState.ALIVE);
+    }
+    private void setStateOfCellToAlive(int row, int col) {
+        Game.gameField[row][col].setCellState(Cell.CellState.ALIVE);
     }
 }
 
