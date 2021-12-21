@@ -20,7 +20,7 @@ public class GameTest {
 
         for (int row = 0; row < MAX_ROWS; row++) {
             for (int col = 0; col < MAX_COLS; col++) {
-                if (Game.gameField[row][col].isAlive()) {
+                if (Game.gameField[row][col].getCellState() == Cell.CellState.ALIVE) {
                     numberOfAliveCells++;
                 }
             }
@@ -31,12 +31,12 @@ public class GameTest {
     @Test
     void allCellsAreDeadExceptRow5Col4() {
         Game.allCellsAreDeadByDefault();
-        Game.gameField[5][4].setAlive(true);
+        Game.gameField[5][4].setCellState(Cell.CellState.ALIVE);
         List<String> aliveCells = new ArrayList<>();
 
         for (int row = 0; row < MAX_ROWS; row++) {
             for (int col = 0; col < MAX_COLS; col++) {
-                if (Game.gameField[row][col].isAlive()) {
+                if (Game.gameField[row][col].getCellState() == Cell.CellState.ALIVE) {
                     aliveCells.add("R" + row + "C" + col);
                 }
             }
@@ -47,11 +47,11 @@ public class GameTest {
     @Test
     void checkHowManyNeighboursOfRow5Col4AreAlive() {
         Game.allCellsAreDeadByDefault();
-        Game.gameField[5][4].setAlive(true);
-        Game.gameField[5][5].setAlive(true);
-        Game.gameField[4][4].setAlive(true);
-        Game.gameField[6][4].setAlive(true);
-        Game.gameField[8][1].setAlive(true);
+        Game.gameField[5][4].setCellState(Cell.CellState.ALIVE);
+        Game.gameField[5][5].setCellState(Cell.CellState.ALIVE);
+        Game.gameField[4][4].setCellState(Cell.CellState.ALIVE);
+        Game.gameField[6][4].setCellState(Cell.CellState.ALIVE);
+        Game.gameField[8][1].setCellState(Cell.CellState.ALIVE);
         int row = 5;
         int col = 4;
 
@@ -63,19 +63,19 @@ public class GameTest {
     @Test
     void aliveCellWithNoAliveNeighboursDies(){
         Game.allCellsAreDeadByDefault();
-        Game.gameField[5][5].setAlive(true);
+        Game.gameField[5][5].setCellState(Cell.CellState.ALIVE);
         Game.proceedToNextGeneration();
 
-        assertEquals(Game.gameField[5][5].isAlive(), false);
+        assertEquals(Game.gameField[5][5].getCellState(), Cell.CellState.DEAD);
     }
     @Test
     void ifThreeAliveNeighboursCellWillComeToLife(){
         Game.allCellsAreDeadByDefault();
-        Game.gameField[4][4].setAlive(true);
-        Game.gameField[4][5].setAlive(true);
-        Game.gameField[5][4].setAlive(true);
+        Game.gameField[4][4].setCellState(Cell.CellState.ALIVE);
+        Game.gameField[4][5].setCellState(Cell.CellState.ALIVE);
+        Game.gameField[5][4].setCellState(Cell.CellState.ALIVE);
         Game.proceedToNextGeneration();
-        assertEquals(Game.gameField[5][5].isAlive(), true);
+        assertEquals(Game.gameField[5][5].getCellState(), Cell.CellState.ALIVE);
     }
 }
 

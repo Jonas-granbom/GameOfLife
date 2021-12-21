@@ -1,12 +1,19 @@
 public class Cell {
 
-    private boolean isAlive;
-    private int row;
-    private int col;
+
+
+    private CellState cellState;
+    private final int row;
+    private final int col;
     private int numberOfAliveNeighbours;
 
-    public Cell(boolean isAlive, int row, int col) {
-        this.isAlive = isAlive;
+    enum CellState {
+        ALIVE,
+        DEAD
+    }
+
+    public Cell(CellState state, int row, int col) {
+        cellState = state;
         this.row = row;
         this.col = col;
     }
@@ -21,21 +28,21 @@ public class Cell {
     public int checkHowManyAliveNeighboursGivenRowAndCol(Cell[][] gameField, int row, int col) {
         int aliveNeighbours = 0;
 
-        if (row > 0 && col > 0 && gameField[row - 1][col - 1].isAlive())
+        if (row > 0 && col > 0 && gameField[row - 1][col - 1].getCellState() == CellState.ALIVE)
             aliveNeighbours++;
-        if (row > 0 && gameField[row - 1][col].isAlive())
+        if (row > 0 && gameField[row - 1][col].getCellState() == CellState.ALIVE)
             aliveNeighbours++;
-        if (row > 0 && col < 9 && gameField[row - 1][col + 1].isAlive())
+        if (row > 0 && col < 9 && gameField[row - 1][col + 1].getCellState() == CellState.ALIVE)
             aliveNeighbours++;
-        if (col > 0 && gameField[row][col - 1].isAlive())
+        if (col > 0 && gameField[row][col - 1].getCellState() == CellState.ALIVE)
             aliveNeighbours++;
-        if (col < 9 && gameField[row][col + 1].isAlive())
+        if (col < 9 && gameField[row][col + 1].getCellState() == CellState.ALIVE)
             aliveNeighbours++;
-        if (row < 9 && col > 0 && gameField[row + 1][col - 1].isAlive())
+        if (row < 9 && col > 0 && gameField[row + 1][col - 1].getCellState() == CellState.ALIVE)
             aliveNeighbours++;
-        if (row < 9 && gameField[row + 1][col].isAlive())
+        if (row < 9 && gameField[row + 1][col].getCellState() == CellState.ALIVE)
             aliveNeighbours++;
-        if (row < 9 && col < 9 && gameField[row + 1][col + 1].isAlive())
+        if (row < 9 && col < 9 && gameField[row + 1][col + 1].getCellState() == CellState.ALIVE)
             aliveNeighbours++;
 
         return aliveNeighbours;
@@ -51,7 +58,7 @@ public class Cell {
 
     @Override
     public String toString() {
-        if (this.isAlive){
+        if (this.getCellState() == CellState.ALIVE) {
             return "▇";
         } else {
             return "▒";

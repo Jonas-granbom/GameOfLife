@@ -32,7 +32,7 @@ public class Game {
     public static void allCellsAreDeadByDefault() {
         for (int row = 0; row < Game.gameField.length; row++) {
             for (int col = 0; col < Game.gameField[row].length; col++) {
-                Game.gameField[row][col] = new Cell(false, row, col);
+                Game.gameField[row][col] = new Cell(Cell.CellState.DEAD, row, col);
             }
         }
     }
