@@ -10,16 +10,15 @@ public class Cell {
         this.row = row;
         this.col = col;
     }
-
-    public boolean isAlive() {
-        return isAlive;
+    public void setCellState(CellState cellState) {
+        this.cellState = cellState;
     }
 
-    public void setAlive(boolean alive) {
-        isAlive = alive;
+    public CellState getCellState() {
+        return cellState;
     }
 
-    public int checkHowManyAliveNeighboursGivenRowAndCol(Cell[][] gameField, int row, int col){
+    public int checkHowManyAliveNeighboursGivenRowAndCol(Cell[][] gameField, int row, int col) {
         int aliveNeighbours = 0;
 
         if (row > 0 && col > 0 && gameField[row - 1][col - 1].isAlive())

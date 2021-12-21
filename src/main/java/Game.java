@@ -7,11 +7,11 @@ public class Game {
         int counter = 0;
 
         allCellsAreDeadByDefault();
-        gameField[0][2].setAlive(true);
-        gameField[1][0].setAlive(true);
-        gameField[1][2].setAlive(true);
-        gameField[2][1].setAlive(true);
-        gameField[2][2].setAlive(true);
+        gameField[0][2].setCellState(Cell.CellState.ALIVE);
+        gameField[1][0].setCellState(Cell.CellState.ALIVE);
+        gameField[1][2].setCellState(Cell.CellState.ALIVE);
+        gameField[2][1].setCellState(Cell.CellState.ALIVE);
+        gameField[2][2].setCellState(Cell.CellState.ALIVE);
 
         while(true){
             System.out.println("generation: " + counter);
@@ -47,11 +47,11 @@ public class Game {
         for (int row = 0; row < Game.gameField.length; row++) {
             for (int col = 0; col < Game.gameField[row].length; col++) {
                 if (Game.gameField[row][col].getNumberOfAliveNeighbours() < 2) {
-                    Game.gameField[row][col].setAlive(false);
+                    Game.gameField[row][col].setCellState(Cell.CellState.DEAD);
                 } else if (Game.gameField[row][col].getNumberOfAliveNeighbours() == 3){
-                    Game.gameField[row][col].setAlive(true);
+                    Game.gameField[row][col].setCellState(Cell.CellState.ALIVE);
                 } else if (Game.gameField[row][col].getNumberOfAliveNeighbours() > 3) {
-                    Game.gameField[row][col].setAlive(false);
+                    Game.gameField[row][col].setCellState(Cell.CellState.DEAD);
                 }
             }
         }
