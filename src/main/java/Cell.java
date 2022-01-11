@@ -25,25 +25,66 @@ public class Cell {
 
     public int checkHowManyAliveNeighboursGivenRowAndCol(Cell[][] gameField, int row, int col) {
         int aliveNeighbours = 0;
+        int firstCell = 0;
+        int lastCell = 9;
 
-        if (row > 0 && col > 0 && gameField[row - 1][col - 1].getCellState() == CellState.ALIVE)
-            aliveNeighbours++;
-        if (row > 0 && gameField[row - 1][col].getCellState() == CellState.ALIVE)
-            aliveNeighbours++;
-        if (row > 0 && col < 9 && gameField[row - 1][col + 1].getCellState() == CellState.ALIVE)
-            aliveNeighbours++;
-        if (col > 0 && gameField[row][col - 1].getCellState() == CellState.ALIVE)
-            aliveNeighbours++;
-        if (col < 9 && gameField[row][col + 1].getCellState() == CellState.ALIVE)
-            aliveNeighbours++;
-        if (row < 9 && col > 0 && gameField[row + 1][col - 1].getCellState() == CellState.ALIVE)
-            aliveNeighbours++;
-        if (row < 9 && gameField[row + 1][col].getCellState() == CellState.ALIVE)
-            aliveNeighbours++;
-        if (row < 9 && col < 9 && gameField[row + 1][col + 1].getCellState() == CellState.ALIVE)
-            aliveNeighbours++;
+        aliveNeighbours = rowAboveCell(gameField, row, col, aliveNeighbours, firstCell, lastCell);
+        aliveNeighbours = sameRowAsCell(gameField, row, col, aliveNeighbours, firstCell, lastCell);
+        aliveNeighbours = rowBelowCell(gameField, row, col, aliveNeighbours, firstCell, lastCell);
 
         return aliveNeighbours;
+    }
+
+    private int rowBelowCell(Cell[][] gameField, int row, int col, int aliveNeighbours, int firstCell, int lastCell) {
+        if (row < lastCell && col > firstCell && gameField[nextRow(row)][previousColumn(col)].getCellState() == CellState.ALIVE) {
+            aliveNeighbours++;
+        }
+        if (row < lastCell && gameField[nextRow(row)][col].getCellState() == CellState.ALIVE) {
+            aliveNeighbours++;
+        }
+        if (row < lastCell && col < lastCell && gameField[nextRow(row)][nextColumn(col)].getCellState() == CellState.ALIVE) {
+            aliveNeighbours++;
+        }
+        return aliveNeighbours;
+    }
+
+    private int sameRowAsCell(Cell[][] gameField, int row, int col, int aliveNeighbours, int firstCell, int lastCell) {
+        if (col > firstCell && gameField[row][previousColumn(col)].getCellState() == CellState.ALIVE) {
+            aliveNeighbours++;
+        }
+        if (col < lastCell && gameField[row][nextColumn(col)].getCellState() == CellState.ALIVE) {
+            aliveNeighbours++;
+        }
+        return aliveNeighbours;
+    }
+
+    private int rowAboveCell(Cell[][] gameField, int row, int col, int aliveNeighbours, int firstCell, int lastCell) {
+        if (row > firstCell && col > firstCell && gameField[previousRow(row)][previousColumn(col)].getCellState() == CellState.ALIVE) {
+            aliveNeighbours++;
+        }
+        if (row > firstCell && gameField[previousRow(row)][col].getCellState() == CellState.ALIVE) {
+            aliveNeighbours++;
+        }
+        if (row > firstCell && col < lastCell && gameField[previousRow(row)][nextColumn(col)].getCellState() == CellState.ALIVE) {
+            aliveNeighbours++;
+        }
+        return aliveNeighbours;
+    }
+
+    private int nextRow(int row) {
+        return row + 1;
+    }
+
+    private int nextColumn(int col) {
+        return col + 1;
+    }
+
+    private int previousColumn(int col) {
+        return col - 1;
+    }
+
+    private int previousRow(int row) {
+        return row - 1;
     }
 
     public void checkForNeighboursForCurrentCell() {

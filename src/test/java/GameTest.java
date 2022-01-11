@@ -65,6 +65,28 @@ public class GameTest {
     }
 
     @Test
+    void aDeadCellWithTwoLiveNeighboursIsDead() {
+        Game.allCellsAreDeadByDefault();
+        setStateOfCellToAlive(1, 1);
+        setStateOfCellToAlive(1, 2);
+        Game.proceedToNextGeneration();
+
+        assertEquals(Game.gameField[2][2].getCellState(), Cell.CellState.DEAD);
+    }
+
+    @Test
+    void aliveCellWithTwoLiveNeighboursIsAlive() {
+        Game.allCellsAreDeadByDefault();
+        setStateOfCellToAlive(1, 1);
+        setStateOfCellToAlive(1, 2);
+        setStateOfCellToAlive(2, 2);
+        Game.proceedToNextGeneration();
+
+        assertEquals(Game.gameField[2][2].getCellState(), Cell.CellState.ALIVE);
+    }
+
+
+    @Test
     void ifThreeAliveNeighboursCellWillComeToLife(){
         Game.allCellsAreDeadByDefault();
         setStateOfCellToAlive(4, 4);
