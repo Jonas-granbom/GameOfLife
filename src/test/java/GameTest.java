@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class GameTest {
@@ -56,7 +58,7 @@ public class GameTest {
     }
 
     @Test
-    void aliveCellWithNoAliveNeighboursDies(){
+    void aliveCellWithNoAliveNeighboursDies() {
         Game.allCellsAreDeadByDefault();
         setStateOfCellToAlive(5, 5);
         Game.proceedToNextGeneration();
@@ -87,7 +89,7 @@ public class GameTest {
 
 
     @Test
-    void ifThreeAliveNeighboursCellWillComeToLife(){
+    void ifThreeAliveNeighboursCellWillComeToLife() {
         Game.allCellsAreDeadByDefault();
         setStateOfCellToAlive(4, 4);
         setStateOfCellToAlive(4, 5);
@@ -95,6 +97,7 @@ public class GameTest {
         Game.proceedToNextGeneration();
         assertEquals(Game.gameField[5][5].getCellState(), Cell.CellState.ALIVE);
     }
+
     private void setStateOfCellToAlive(int row, int col) {
         Game.gameField[row][col].setCellState(Cell.CellState.ALIVE);
     }
