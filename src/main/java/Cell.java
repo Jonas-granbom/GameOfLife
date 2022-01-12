@@ -25,12 +25,12 @@ public class Cell {
 
     public int checkHowManyAliveNeighboursGivenRowAndCol(Cell[][] gameField, int row, int col) {
         int aliveNeighbours = 0;
-        int firstCell = 0;
-        int lastCell = 9;
+        int FIRST_CELL = 0;
+        int LAST_CELL = 9;
 
-        aliveNeighbours = rowAboveCell(gameField, row, col, aliveNeighbours, firstCell, lastCell);
-        aliveNeighbours = sameRowAsCell(gameField, row, col, aliveNeighbours, firstCell, lastCell);
-        aliveNeighbours = rowBelowCell(gameField, row, col, aliveNeighbours, firstCell, lastCell);
+        aliveNeighbours = rowAboveCell(gameField, row, col, aliveNeighbours, FIRST_CELL, LAST_CELL);
+        aliveNeighbours = sameRowAsCell(gameField, row, col, aliveNeighbours, FIRST_CELL, LAST_CELL);
+        aliveNeighbours = rowBelowCell(gameField, row, col, aliveNeighbours, FIRST_CELL, LAST_CELL);
 
         return aliveNeighbours;
     }
