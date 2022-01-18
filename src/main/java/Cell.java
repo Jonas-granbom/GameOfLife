@@ -87,7 +87,7 @@ public class Cell {
         return row - 1;
     }
 
-    public void checkForNeighboursForCurrentCell() {
+    public void UpdateNumberOfAliveNeighboursForCurrentCell() {
         numberOfAliveNeighbours = checkHowManyAliveNeighboursGivenRowAndCol(Game.gameField);
     }
 

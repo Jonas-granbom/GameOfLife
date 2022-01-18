@@ -63,7 +63,7 @@ public class Game {
     private static void checkNumberOfAliveNeighboursInAllCells() {
         for (int row = 0; row < Game.gameField.length; row++) {
             for (int col = 0; col < Game.gameField[row].length; col++) {
-                Game.gameField[row][col].checkForNeighboursForCurrentCell();
+                Game.gameField[row][col].UpdateNumberOfAliveNeighboursForCurrentCell();
             }
         }
     }
