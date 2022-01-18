@@ -52,7 +52,7 @@ public class GameTest {
         int row = 5;
         int col = 4;
 
-        int numberOfAliveNeighboursOfGivenRowAndCol = Game.gameField[row][col].checkHowManyAliveNeighboursGivenRowAndCol(Game.gameField, row, col);
+        int numberOfAliveNeighboursOfGivenRowAndCol = Game.gameField[row][col].checkHowManyAliveNeighboursGivenRowAndCol(Game.gameField);
 
         assertEquals(3, numberOfAliveNeighboursOfGivenRowAndCol);
     }

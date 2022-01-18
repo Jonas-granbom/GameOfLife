@@ -23,7 +23,7 @@ public class Cell {
         return cellState;
     }
 
-    public int checkHowManyAliveNeighboursGivenRowAndCol(Cell[][] gameField, int row, int col) {
+    public int checkHowManyAliveNeighboursGivenRowAndCol(Cell[][] gameField) {
         int aliveNeighbours = 0;
         int FIRST_CELL = 0;
         int LAST_CELL = 9;
@@ -88,7 +88,7 @@ public class Cell {
     }
 
     public void checkForNeighboursForCurrentCell() {
-        numberOfAliveNeighbours = checkHowManyAliveNeighboursGivenRowAndCol(Game.gameField, row, col);
+        numberOfAliveNeighbours = checkHowManyAliveNeighboursGivenRowAndCol(Game.gameField);
     }
 
     public int getNumberOfAliveNeighbours() {
