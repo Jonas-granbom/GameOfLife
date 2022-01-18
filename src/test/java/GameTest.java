@@ -12,7 +12,7 @@ public class GameTest {
 
     @Test
     void allCellsAreDead() {
-        Game.allCellsAreDeadByDefault();
+        Game.fillGameFieldWithDeadCellsByDefaultByDefault();
         int numberOfAliveCells = 0;
 
         for (int row = 0; row < MAX_ROWS; row++) {
@@ -27,7 +27,7 @@ public class GameTest {
 
     @Test
     void allCellsAreDeadExceptRow5Col4() {
-        Game.allCellsAreDeadByDefault();
+        Game.fillGameFieldWithDeadCellsByDefaultByDefault();
         setStateOfCellToAlive(5, 4);
         List<String> aliveCells = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class GameTest {
 
     @Test
     void checkHowManyNeighboursOfRow5Col4AreAlive() {
-        Game.allCellsAreDeadByDefault();
+        Game.fillGameFieldWithDeadCellsByDefaultByDefault();
         setStateOfCellToAlive(5, 4);
         setStateOfCellToAlive(5, 5);
         setStateOfCellToAlive(4, 4);
@@ -59,7 +59,7 @@ public class GameTest {
 
     @Test
     void aliveCellWithNoAliveNeighboursDies() {
-        Game.allCellsAreDeadByDefault();
+        Game.fillGameFieldWithDeadCellsByDefaultByDefault();
         setStateOfCellToAlive(5, 5);
         Game.proceedToNextGeneration();
 
@@ -68,7 +68,7 @@ public class GameTest {
 
     @Test
     void aDeadCellWithTwoLiveNeighboursIsDead() {
-        Game.allCellsAreDeadByDefault();
+        Game.fillGameFieldWithDeadCellsByDefaultByDefault();
         setStateOfCellToAlive(1, 1);
         setStateOfCellToAlive(1, 2);
         Game.proceedToNextGeneration();
@@ -78,7 +78,7 @@ public class GameTest {
 
     @Test
     void aliveCellWithTwoLiveNeighboursIsAlive() {
-        Game.allCellsAreDeadByDefault();
+        Game.fillGameFieldWithDeadCellsByDefaultByDefault();
         setStateOfCellToAlive(1, 1);
         setStateOfCellToAlive(1, 2);
         setStateOfCellToAlive(2, 2);
@@ -90,7 +90,7 @@ public class GameTest {
 
     @Test
     void ifThreeAliveNeighboursCellWillComeToLife() {
-        Game.allCellsAreDeadByDefault();
+        Game.fillGameFieldWithDeadCellsByDefaultByDefault();
         setStateOfCellToAlive(4, 4);
         setStateOfCellToAlive(4, 5);
         setStateOfCellToAlive(5, 4);

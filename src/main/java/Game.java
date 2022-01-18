@@ -6,7 +6,7 @@ public class Game {
 
         int counter = 0;
 
-        allCellsAreDeadByDefault();
+        fillGameFieldWithDeadCellsByDefaultByDefault();
         setStateOfCellToAlive(gameField, 0, 2, Cell.CellState.ALIVE);
         setStateOfCellToAlive(gameField, 1, 0, Cell.CellState.ALIVE);
         setStateOfCellToAlive(gameField, 1, 2, Cell.CellState.ALIVE);
@@ -33,7 +33,7 @@ public class Game {
     }
 
 
-    public static void allCellsAreDeadByDefault() {
+    public static void fillGameFieldWithDeadCellsByDefaultByDefault() {
         for (int row = 0; row < Game.gameField.length; row++) {
             for (int col = 0; col < Game.gameField[row].length; col++) {
                 Game.gameField[row][col] = new Cell(Cell.CellState.DEAD, row, col);
@@ -42,11 +42,11 @@ public class Game {
     }
 
     public static void proceedToNextGeneration() {
-        checkNeighbourStatusInAllCells();
-        giveBirthOrKillCellDependingOnNeighbourStatus();
+        checkNumberOfAliveNeighboursInAllCells();
+        giveBirthOrKillCellDependingOnNumberOfAliveNeighbours();
     }
 
-    private static void giveBirthOrKillCellDependingOnNeighbourStatus() {
+    private static void giveBirthOrKillCellDependingOnNumberOfAliveNeighbours() {
         for (int row = 0; row < Game.gameField.length; row++) {
             for (int col = 0; col < Game.gameField[row].length; col++) {
                 if (Game.gameField[row][col].getNumberOfAliveNeighbours() < 2) {
@@ -60,7 +60,7 @@ public class Game {
         }
     }
 
-    private static void checkNeighbourStatusInAllCells() {
+    private static void checkNumberOfAliveNeighboursInAllCells() {
         for (int row = 0; row < Game.gameField.length; row++) {
             for (int col = 0; col < Game.gameField[row].length; col++) {
                 Game.gameField[row][col].checkForNeighboursForCurrentCell();

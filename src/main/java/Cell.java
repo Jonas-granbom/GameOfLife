@@ -28,14 +28,14 @@ public class Cell {
         int FIRST_CELL = 0;
         int LAST_CELL = 9;
 
-        aliveNeighbours = rowAboveCell(gameField, row, col, aliveNeighbours, FIRST_CELL, LAST_CELL);
-        aliveNeighbours = sameRowAsCell(gameField, row, col, aliveNeighbours, FIRST_CELL, LAST_CELL);
-        aliveNeighbours = rowBelowCell(gameField, row, col, aliveNeighbours, FIRST_CELL, LAST_CELL);
+        aliveNeighbours = rowAboveCell(gameField, aliveNeighbours, FIRST_CELL, LAST_CELL);
+        aliveNeighbours = sameRowAsCell(gameField, aliveNeighbours, FIRST_CELL, LAST_CELL);
+        aliveNeighbours = rowBelowCell(gameField, aliveNeighbours, FIRST_CELL, LAST_CELL);
 
         return aliveNeighbours;
     }
 
-    private int rowBelowCell(Cell[][] gameField, int row, int col, int aliveNeighbours, int firstCell, int lastCell) {
+    private int rowBelowCell(Cell[][] gameField, int aliveNeighbours, int firstCell, int lastCell) {
         if (row < lastCell && col > firstCell && gameField[nextRow(row)][previousColumn(col)].getCellState() == CellState.ALIVE) {
             aliveNeighbours++;
         }
@@ -48,7 +48,7 @@ public class Cell {
         return aliveNeighbours;
     }
 
-    private int sameRowAsCell(Cell[][] gameField, int row, int col, int aliveNeighbours, int firstCell, int lastCell) {
+    private int sameRowAsCell(Cell[][] gameField, int aliveNeighbours, int firstCell, int lastCell) {
         if (col > firstCell && gameField[row][previousColumn(col)].getCellState() == CellState.ALIVE) {
             aliveNeighbours++;
         }
@@ -58,7 +58,7 @@ public class Cell {
         return aliveNeighbours;
     }
 
-    private int rowAboveCell(Cell[][] gameField, int row, int col, int aliveNeighbours, int firstCell, int lastCell) {
+    private int rowAboveCell(Cell[][] gameField, int aliveNeighbours, int firstCell, int lastCell) {
         if (row > firstCell && col > firstCell && gameField[previousRow(row)][previousColumn(col)].getCellState() == CellState.ALIVE) {
             aliveNeighbours++;
         }
